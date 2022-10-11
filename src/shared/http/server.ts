@@ -8,6 +8,8 @@ import AppError from '@shared/errors/appError';
 import '@shared/typeorm';
 import { errors } from 'celebrate';
 import uploadConfig from '@config/upload';
+import swaggerConfig from '../../swagger/index';
+import { serve, setup } from 'swagger-ui-express';
 
 const app = express();
 const port = '3333';
@@ -25,6 +27,8 @@ app.use(errors());
 app.route('/').get((req: Request, res: Response) => {
   res.send({ versao: 'Api na V1' });
 });
+
+app.use('/api-docs', serve, setup(swaggerConfig))
 
 app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
   if (error instanceof AppError) {
