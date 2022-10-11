@@ -22,6 +22,10 @@ app.use(routes);
 
 app.use(errors());
 
+app.route('/').get((req: Request, res: Response) => {
+  res.send({ versao: 'Api na V1' });
+});
+
 app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
   if (error instanceof AppError) {
     return res.status(error.statusCode).json({
