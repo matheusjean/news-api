@@ -61,7 +61,7 @@ $ yarn dev
 ### ✳️ Verificando as end-points
 
 ```bash
-# Acesse http://localhost:3333/docs
+# Acesse http://localhost:3333/api-docs
 
 ```
 
