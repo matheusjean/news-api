@@ -49,7 +49,14 @@ export const newsIdPath = {
     tags: ['News'],
     summary: 'Atualiza uma notícia',
     description: 'Atualiza uma notícia de acordo com o Id salvo no ms News.',
-    parameters: [{ in: 'path', name: 'id', description: 'ID da notícia', required: true }],
+    parameters: [
+      {
+        in: 'path',
+        name: 'id',
+        description: 'ID da notícia',
+        required: true,
+      },
+    ],
     requestBody: {
       content: {
         'application/json': {
@@ -59,20 +66,20 @@ export const newsIdPath = {
         },
       },
     },
-  },
-  responses: {
-    200: {
-      description: 'Sucesso',
-      content: {
-        'application/json': {
-          schema: {
-            oneOf: [
-              { $ref: '#/schemas/UpdateNewsUseCase' },
-              {
-                type: 'array',
-                orders: {},
-              },
-            ],
+    responses: {
+      200: {
+        description: 'Sucesso',
+        content: {
+          'application/json': {
+            schema: {
+              oneOf: [
+                { $ref: '#/schemas/UpdateNewsUseCase' },
+                {
+                  type: 'array',
+                  orders: {},
+                },
+              ],
+            },
           },
         },
       },
@@ -96,7 +103,8 @@ export const newsIdPath = {
   delete: {
     tags: ['News'],
     summary: 'Deleta uma notícia pelo Id salvo no banco',
-    description: 'Realiza um soft delete em uma notícia de acordo com o id salvo no ms News. Não aceita id externo',
+    description:
+      'Realiza um soft delete em uma notícia de acordo com o id salvo no ms News. Não aceita id externo',
     parameters: [
       {
         in: 'path',
@@ -126,5 +134,4 @@ export const newsIdPath = {
       },
     },
   },
-
 };
