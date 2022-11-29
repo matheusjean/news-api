@@ -1,4 +1,3 @@
-
 export const PostUseCase = {
   type: 'object',
   properties: {
@@ -24,5 +23,4 @@ export const PostUseCase = {
       type: 'boolean',
     },
   },
-
 };

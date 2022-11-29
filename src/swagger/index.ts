@@ -23,6 +23,10 @@ export default {
       name: 'News',
       description: 'API relacionada a notícias',
     },
+    {
+      name: 'Category',
+      description: 'API relacionada as categorias',
+    },
   ],
   paths,
   schemas,

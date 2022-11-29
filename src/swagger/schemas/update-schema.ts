@@ -1,21 +1,26 @@
 export const UpdateNewsUseCase = {
-  type: 'array',
-  orders: {
-    type: 'object',
-    properties: {
-      externalId: {
-        type: 'string',
-      },
-      discountCoupon: {
-        type: 'number',
-      },
-      origin: {
-        type: 'string',
-      },
-      creationDate: {
-        type: 'string',
-        format: 'date',
-      },
+  type: 'object',
+  properties: {
+    title: {
+      type: 'string',
+    },
+    hat: {
+      type: 'string',
+    },
+    text: {
+      type: 'string',
+    },
+    author: {
+      type: 'string',
+    },
+    image: {
+      type: 'string',
+    },
+    link: {
+      type: 'string',
+    },
+    isActive: {
+      type: 'boolean',
     },
   },
 };
