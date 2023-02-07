@@ -9,3 +9,4 @@ dist
 .txt
 uploads/*
 !uploads/.gitkeep
+ormconfig.json
