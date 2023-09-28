@@ -1,8 +1,11 @@
+import Category from '../../../category/typeorm/entities/Category';
 import {
   Column,
   CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
+  ManyToMany,
+  JoinTable,
 } from 'typeorm';
 
 @Entity('news')
@@ -36,6 +39,9 @@ class News {
 
   @CreateDateColumn()
   updated_at: Date;
+
+  @ManyToMany(() => Category, (category) => category.news)
+  categories: Category[];
 }
 
 export default News;

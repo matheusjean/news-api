@@ -1,7 +1,10 @@
+import News from '../../../news/typeorm/entities/News';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinTable,
+  ManyToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -21,6 +24,10 @@ class Category {
 
   @CreateDateColumn()
   updated_at: Date;
+
+  @ManyToMany(() => News, (news) => news.categories)
+  @JoinTable()
+  news: News[];
 }
 
 export default Category;

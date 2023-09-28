@@ -37,6 +37,7 @@ newsRouter.post(
       image: Joi.string().required(),
       link: Joi.string().required(),
       isActive: Joi.boolean().required(),
+      categoryIds: Joi.array().items(Joi.string()),
     },
   }),
   newsController.create,

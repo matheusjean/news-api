@@ -2,6 +2,7 @@ import AppError from '@shared/errors/appError';
 import { getCustomRepository } from 'typeorm';
 import News from '../typeorm/entities/News';
 import { NewsRepository } from '../typeorm/repositories/newsRepository';
+import { CategoryRepository } from '@modules/category/typeorm/repositories/categoryRepository';
 
 interface IRequest {
   hat: string;
@@ -11,6 +12,7 @@ interface IRequest {
   image: string;
   link: string;
   isActive: boolean;
+  categoryIds: string[];
 }
 
 export default class CreateNewsService {
@@ -22,8 +24,10 @@ export default class CreateNewsService {
     image,
     link,
     isActive,
+    categoryIds,
   }: IRequest): Promise<News> {
     const newsRepository = getCustomRepository(NewsRepository);
+
     const newsExists = await newsRepository.findByName(hat);
 
     if (newsExists) {
@@ -39,6 +43,11 @@ export default class CreateNewsService {
       link,
       isActive,
     });
+
+    const categoryRepository = getCustomRepository(CategoryRepository);
+    const categories = await categoryRepository.findByIds(categoryIds);
+
+    news.categories = categories;
 
     await newsRepository.save(news);
 

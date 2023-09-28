@@ -5,6 +5,7 @@ import ListNewsService from '../service/ListNewsService';
 import ShowNewsService from '../service/ShowNewsService';
 import UpdateNewsService from '../service/UpdateNewsService';
 import ShowHatNewsService from '../service/ShowHatNewsService';
+import AppError from '@shared/errors/appError';
 
 export default class NewsController {
   public async index(req: Request, res: Response): Promise<Response> {
@@ -42,21 +43,28 @@ export default class NewsController {
   }
 
   public async create(req: Request, res: Response): Promise<Response> {
-    const { hat, title, text, author, image, link, isActive } = req.body;
+    const { hat, title, text, author, image, link, isActive, categoryIds } =
+      req.body;
 
     const createNews = new CreateNewsService();
 
-    const news = await createNews.execute({
-      hat,
-      title,
-      text,
-      author,
-      image,
-      link,
-      isActive,
-    });
+    try {
+      const news = await createNews.execute({
+        hat,
+        title,
+        text,
+        author,
+        image,
+        link,
+        isActive,
+        categoryIds,
+      });
 
-    return res.json(news);
+      return res.json(news);
+    } catch (error) {
+      console.error('Erro ao criar notícia:', error);
+      throw new AppError('Erro ao criar notícia', 400);
+    }
   }
 
   public async update(req: Request, res: Response): Promise<Response> {
