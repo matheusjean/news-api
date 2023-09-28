@@ -6,7 +6,9 @@ export default class ListNewsService {
   public async execute(): Promise<News[]> {
     const newsRepository = getCustomRepository(NewsRepository);
 
-    const news = await newsRepository.find({});
+    const news = await newsRepository.find({
+      relations: ['categories'],
+    });
 
     return news;
   }

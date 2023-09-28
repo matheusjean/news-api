@@ -13,7 +13,14 @@ export default class NewsController {
 
     const news = await listNews.execute();
 
-    return res.json(news);
+    const newsWithCategories = await Promise.all(
+      news.map(async (newsItem) => {
+        const categories = newsItem.categories;
+        return { ...newsItem, categories };
+      }),
+    );
+
+    return res.json(newsWithCategories);
   }
 
   public async show(req: Request, res: Response): Promise<Response> {
