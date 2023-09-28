@@ -17,6 +17,15 @@ newsRouter.get(
   newsController.show,
 );
 
+newsRouter.get(
+  '/by-hat/:hat',
+  celebrate({
+    [Segments.PARAMS]: {
+      hat: Joi.string().required(),
+    },
+  }),
+  newsController.getByHat,
+);
 newsRouter.post(
   '/',
   celebrate({
